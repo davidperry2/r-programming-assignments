@@ -1,0 +1,18 @@
+For this exercise I created two matrices in R. The first,
+
+A <- matrix(1:100, nrow = 10)
+
+is a 10×1010 \times 1010×10 square matrix filled column-wise with the numbers 1 through 100. The second,
+
+B <- matrix(1:1000, nrow = 10)
+
+is a 10×10010 \times 10010×100 rectangular matrix. Checking the dimensions confirmed that A is indeed square, while B is not.
+
+With the square matrix A, I attempted to compute both the determinant and the inverse. R allowed both operations to run, but the results are telling: the determinant came out as exactly zero, and the attempt to invert the matrix produced an error stating that the system is computationally singular. In plain terms, this means that although A has the right shape to be invertible, its columns are not independent of one another. In fact, each column of A is just a linear combination of two basic vectors (a column of ones and the sequence 1 through 10). Because of this dependence, the rank of A is only two rather than 10, which makes the determinant vanish and prevents the matrix from having an inverse.
+
+The story with B is different but simpler. Because B has dimensions 10×10010 \times 10010×100, it is not a square matrix at all. Determinants and two-sided inverses are only defined for square matrices, so when I tried det(B) and solve(B), R immediately returned error messages explaining that the input must be a square matrix. In other words, the failure here has nothing to do with linear dependence, but rather with the fact that the operations themselves are not defined for a rectangular object.
+
+Throughout the code, I used tryCatch() to wrap each call to det() and solve(). This way, instead of the script breaking when an error occurred, the error message was stored and displayed neatly. This is a good habit when experimenting with linear algebra operations in R, since not all matrices will cooperate.
+One last point worth noting is that even when a square matrix is technically invertible, numerical issues can arise. R will warn about this by reporting tiny condition numbers or by giving unstable results. In practice, it is usually better to solve linear systems with solve(A, b) directly, rather than explicitly computing the inverse of A, since the latter can amplify rounding errors and is often slower.
+
+In summary, matrix A looked promising but turned out to be singular, while matrix B could not be used at all because it was not square. Both examples highlight important facts: shape alone does not guarantee invertibility, and numerical software, such as R, will faithfully flag these issues when we attempt algebraic operations.
