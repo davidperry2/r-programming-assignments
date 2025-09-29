@@ -1,0 +1,36 @@
+A <- matrix(1:100,  nrow = 10)
+B <- matrix(1:1000, nrow = 10)   
+
+dim(A)  
+dim(B)  
+
+safe_det   <- function(M) tryCatch(det(M),   error = function(e) e)
+safe_solve <- function(M) tryCatch(solve(M), error = function(e) e)
+
+invA <- safe_solve(A)
+detA <- safe_det(A)
+
+invB <- safe_solve(B)
+detB <- safe_det(B)
+
+rankA  <- qr(A)$rank
+kappaA <- tryCatch(kappa(A), error = function(e) NA_real_)
+
+show_result <- function(label, x) {
+  cat("\n", label, "\n", sep = "")
+  if (inherits(x, "error")) {
+    cat("ERROR: ", conditionMessage(x), "\n", sep = "")
+  } else {
+    print(x)
+  }
+}
+
+show_result("dim(A): ", dim(A))
+show_result("dim(B): ", dim(B))
+show_result("det(A): ", detA)
+show_result("solve(A): ", invA)
+show_result("det(B): ", detB)
+show_result("solve(B): ", invB)
+
+cat("\nrank(A): ", rankA, "\n", sep = "")
+cat("kappa(A): ", kappaA, "\n", sep = "")
