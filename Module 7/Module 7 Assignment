@@ -1,0 +1,44 @@
+data("mtcars")
+head(mtcars)
+str(mtcars)
+
+print(mtcars)
+summary(mtcars)
+
+plot(mtcars$mpg, mtcars$hp,
+     xlab="Miles per Gallon",
+     ylab="Horsepower",
+     main="MPG vs HP",
+     pch=19,
+     col="steelblue")
+
+num_vec <- c(1,2,3,4)
+summary(num_vec)
+
+s3_obj <- list(name="Myself", age=29, GPA=3.5)
+class(s3_obj) <- "student_s3"
+
+print.student_s3 <- function(x){
+  cat("S3 Student:\n",
+      "Name:",x$name,"\n",
+      "Age:",x$age,"\n",
+      "GPA:",x$GPA,"\n")
+}
+print(s3_obj)
+
+setClass("student_s4",
+         slots=c(name="character", age="numeric", GPA="numeric"))
+s4_obj <- new("student_s4", name="Myself", age=29, GPA=3.5)
+
+setMethod("show","student_s4",function(object){
+  cat("S4 Student:\n",
+      "Name:",object@name,"\n",
+      "Age:",object@age,"\n",
+      "GPA:",object@GPA,"\n")
+})
+s4_obj
+
+isS4(s3_obj)
+isS4(s4_obj)
+typeof(s3_obj)
+typeof(mtcars)
