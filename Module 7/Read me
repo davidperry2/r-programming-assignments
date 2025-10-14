@@ -1,0 +1,11 @@
+What is the best way to figure out whether an object is S3 or S4?
+isS4(object) will tell you whether it is an S4 object; if it returns FALSE, then it is either an S3 object or a base object. You can also inspect a class(object) or methods(class = "classname") to see how an object is actually dispatched. If it has formal slots, i.e., is an S4 object, you will see those listed in the help pages for str() or slotNames().
+
+How can I figure out the underlying type of an object?
+typeof() and mode() will give you what is stored at the bottom level, i.e., "integer", "double", "list", and so on. For example, typeof(mtcars) would be "list", since a data frame is essentially a list.
+
+What is a generic function? 
+A generic function contains code to decide which method should be run for a given input. This means that if you pass an object of class classname, it will dispatch to a function called print.classname(), for example, and run that function instead of what it would otherwise do. Generic functions that are part of R's default language definition are print(), summary(), and plot(). You can define your own generic functions, but most people use the same ones as R by default and write methods for them.
+
+What are the main differences between S3 and S4?
+S3 is an informal, flexible framework. You can assign a class to an object by setting class(x) <- "classname", and you can write a method for a generic function by simply giving your function the correct name. S4 is formal, strict, you must define classes with setClass() and provide slot types which must be enforced. S3 is fast and easy for most purposes; S4 is more verbose and rigid but more explicit and rigorous, which makes it better for large or complex systems.
