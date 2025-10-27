@@ -1,0 +1,13 @@
+data("mtcars", package = "datasets")
+head(mtcars)
+
+plot(mtcars$hp, mtcars$mpg, main="Base R: MPG vs HP", xlab="Horsepower", ylab="MPG", pch=19, col="blue")
+hist(mtcars$mpg, main="Base R: MPG Distribution", xlab="MPG", col="lightgreen", border="white")
+
+library(lattice)
+xyplot(mpg ~ hp | factor(cyl), data=mtcars, main="Lattice: MPG vs HP by Cyl", xlab="HP", ylab="MPG", pch=19, col="darkorange")
+bwplot(mpg ~ factor(gear), data=mtcars, main="Lattice: MPG by Gears", xlab="Gears", ylab="MPG", col="skyblue")
+
+library(ggplot2)
+ggplot(mtcars, aes(x=hp, y=mpg, color=factor(cyl))) + geom_point() + geom_smooth(method="lm", se=FALSE) + labs(title="ggplot2: MPG vs HP by Cyl", x="HP", y="MPG", color="Cyl")
+ggplot(mtcars, aes(x=mpg)) + geom_histogram(binwidth=2, fill="steelblue", color="white") + facet_wrap(~cyl) + labs(title="ggplot2: MPG Distribution by Cyl", x="MPG")
