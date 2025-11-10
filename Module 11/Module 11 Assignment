@@ -1,0 +1,24 @@
+tukey_outlier <- function(v) {
+  qs <- quantile(v, probs = c(0.25, 0.75), na.rm = TRUE)
+  iqr <- qs[2] - qs[1]
+  lower <- qs[1] - 1.5 * iqr
+  upper <- qs[2] + 1.5 * iqr
+  v < lower | v > upper
+}
+
+tukey_multiple <- function(x) {
+  outliers <- array(TRUE, dim = dim(x))
+  for (j in seq_len(ncol(x))) {
+    outliers[, j] <- outliers[, j] & tukey_outlier(x[, j])
+  }
+  outlier.vec <- logical(nrow(x))
+  for (i in seq_len(nrow(x))) {
+    outlier.vec[i] <- all(outliers[i, ])
+  }
+  outlier.vec
+}
+
+set.seed(123)
+test_mat <- matrix(rnorm(50), nrow = 10)
+tukey_multiple(test_mat)
+
