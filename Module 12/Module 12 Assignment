@@ -1,0 +1,25 @@
+---
+title: "Module 12 Assignment: My R Markdown Primer"
+author: "David Perry"
+date: "2025-11-17"
+output: html_document
+---
+
+# Introduction
+
+R Markdown is a framework that allows you to combine **narrative text**, **R code**, and **LaTeX math** into one reproducible document. When knitted, it produces a nicely formatted report (HTML, PDF, or Word) that captures your analysis, figures, and explanations all in one place.
+
+$$
+\int_0^1 x^2\, dx = \frac{1}{3}
+$$
+Working with R Markdown makes it easy to blend narrative writing with reproducible code. I found that mixing code chunks with explanatory text provides a much clearer workflow than writing a standard word-processor report. Knitting to HTML was straightforward, though I needed to watch out for missing packages or improperly closed code chunks.
+
+```{r}
+library(ggplot2)
+data(mpg)
+
+summary(mpg$hwy)
+
+ggplot(mpg, aes(displ, hwy, color = class)) +
+geom_point() +
+theme_minimal()
