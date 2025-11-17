@@ -1,0 +1,4 @@
+For this assignment, I learned how to use R Markdown, which combines text, code, and mathematics in a single document. The Markdown syntax was relatively simple; headers, bold, italics, and lists all functioned as I would expect. The LaTeX math syntax was also easy to use; I just had to remember to use $ or $$ around equations, such as the integral that I included in my report.
+The coolest part was how the R code chunks run right inside the document. I loaded ggplot2, used the mpg dataset, printed a summary, and made a scatterplot. It was helpful to see the output appear directly under the code instead of switching between RStudio and a separate report.
+My main issues were forgetting to close a code chunk and needing to install missing packages before knitting. Once I fixed those, the HTML knitted without any problems.
+Overall, R Markdown feels way more organized than writing a normal report, especially when code is involved.
