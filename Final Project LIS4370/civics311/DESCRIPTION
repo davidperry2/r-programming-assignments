@@ -1,0 +1,26 @@
+Package: civics311
+Type: Package
+Title: Tools for Cleaning and Analyzing 311 Service Request Data
+Version: 0.0.0.9000
+Authors@R: 
+    person("David", "Perry", 
+           email = "davidperry2@usf.edu", 
+           role = c("aut", "cre"))
+Description: 
+    Provides helper functions for cleaning, summarizing, and visualizing 
+    municipal 311 service request data. Includes tools for detecting 
+    outliers in resolution times using Tukey's rule and S3 methods for 
+    summary objects.
+Depends: 
+    R (>= 3.1.2)
+Imports: 
+    dplyr,
+    ggplot2,
+    lubridate,
+    stringr
+License: CC0
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/davidperry2/r-programming-assignments/tree/main/Final%20Project
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3

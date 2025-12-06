@@ -1,0 +1,46 @@
+---
+title: "R Markdown Primer"
+author: "David Perry"
+date: "2025-12-06"
+output: html_document
+---
+
+## Introduction
+
+R Markdown combines narrative text, executable R code, and formatted output
+to create reproducible analysis documents. It allows explanation and analysis
+to coexist in a single document.
+
+## A bit of math
+
+Inline example: $\alpha + \beta = \gamma$
+
+Displayed example:
+
+$$
+Q_3 + 1.5 \times (Q_3 - Q_1)
+$$
+
+## Example code chunks
+
+```{r setup, message=FALSE}
+library(civics311)
+library(dplyr)
+```
+
+```{r}
+# Example hypothetical usage:
+# cleaned <- clean_311(my_311_data)
+# summary <- summarize_requests(cleaned)
+# summary
+```
+
+```{r, eval=FALSE}
+# plot_requests(summary)
+```
+
+## Reflection
+
+R Markdown makes it easier to combine narrative writing, R code, and math
+in a single reproducible workflow. Knitting ensures that code is executed
+freshly each time, preventing outdated results and improving transparency.
